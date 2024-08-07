@@ -6,7 +6,7 @@ function Students() {
   const [students, setStudents] = useState([])
 
   const getStudents = async () => {
-    const response = await fetch('http://localhost:5000/getStudent')
+    const response = await fetch('https://final-library-server.onrender.com/getStudent')
     const data = await response.json()
     setStudents(data.students)
   }

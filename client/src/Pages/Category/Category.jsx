@@ -14,7 +14,7 @@ function Category() {
     }
   }
   const getCategory = async () => {
-    const response = await fetch('http://localhost:5000/getBooks')
+    const response = await fetch('https://final-library-server.onrender.com/getBooks')
     const data = await response.json()
     setbooks(data.books)
   }

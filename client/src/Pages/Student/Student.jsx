@@ -22,7 +22,7 @@ function Student() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(student)
-        axios.post('http://localhost:5000/AddStudent', student)
+        axios.post('https://final-library-server.onrender.com/AddStudent', student)
             .then(response => {
                 setStudent({
                     firstName: '',

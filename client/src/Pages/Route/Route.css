@@ -1,0 +1,36 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100% !important;
+    height: 100% !important;
+    background-size: cover;
+    background-position: center;
+    z-index: 999;
+    filter: brightness(75%);
+}
+
+.Component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    position: absolute;
+    width: 100%;
+    color: white;
+    background-color: transparent;
+}
+
+.carousel-item img {
+    width: 1500px !important;
+    height: auto;
+    object-fit: cover;
+}
+.Height{
+    height: 92vh !important;
+}

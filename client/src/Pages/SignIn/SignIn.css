@@ -1,0 +1,54 @@
+body {
+    background-color: #e8e7e7 !important;
+
+}
+
+.overlays {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    filter: brightness(40%);
+}
+
+.overlays img {
+    width: 1480px;
+    height: 800px;
+}
+
+.SignIn-container h2 {
+    text-align: center;
+}
+
+.SignIn-container p {
+    text-align: center;
+    font-size: 10px;
+}
+
+.SignIn-container {
+    z-index: 1000;
+    position: absolute;
+    background-color: transparent;
+    top: 20%;
+    right: 33%;
+    height: 450px;
+    width: 500px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid white;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.SignIn-container button {
+    margin-top: 20px !important;
+    width: 100%;
+    background-color: #4A190D;
+    border: none;
+}
+
+.SignIn-container button:hover {
+    background-color: white;
+    border: 1px solid #4A190D ;
+    color: #4A190D;
+}

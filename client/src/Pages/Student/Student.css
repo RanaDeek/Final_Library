@@ -1,0 +1,46 @@
+.AddStudent-container {
+    padding: 20px;
+    height: 180% !important;
+    width: 130%;
+    text-align: center;
+    color: #4A190D;
+}
+
+.studentH2{
+    margin-right: 150px;
+}
+
+.AddStudent {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px;
+    color: #4A190D;
+    margin-right: 100px;
+    text-align: left;
+    background-color: rgb(240, 237, 237);
+}
+
+.student-row {
+    width: 200%;
+}
+
+.student-row input {
+    width: 30% !important;
+}
+.AddStudent button {
+    width: 48%;
+    margin-left: 165px;
+    background-color: #4A190D;
+    border: none;
+    height: 40px;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    cursor: pointer;
+}
+.AddStudent button:hover{
+    background-color: transparent;
+    color: #4A190D;
+    border: 1px solid #4A190D;
+}

@@ -58,7 +58,7 @@ function Book() {
             })
             .catch(error => {
                 console.error('Error adding:', error);
-                toast.error('Error Adding Student . Please try again.', {
+                toast.error('Error Adding Book . Please try again.', {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -75,7 +75,7 @@ function Book() {
         <>
             <div className='AddStudent-container '>
                 <h2 className='studentH2'>Add Book</h2>
-                <p className='studentH2'>Add New Students to Discover Our Collection</p>
+                <p className='studentH2'>Add New Book to Enhance Our Collection</p>
                 <form className='shadow AddStudent' onSubmit={handleSubmit}>
                     <div className="row mb-3 student-row">
                         <label htmlFor="inputEmail1" className="col-sm-2 col-form-label">Book Title</label>

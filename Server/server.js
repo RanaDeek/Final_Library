@@ -1,3 +1,5 @@
+require('dotenv').config(); 
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -11,7 +13,14 @@ const JWT_SECRET = 'your_secret_key';
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect("mongodb://localhost:27017/Library");
+const dbURI = process.env.MONGO_DB;
+
+mongoose.connect(dbURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log('MongoDB connected...'))
+.catch(err => console.log('MongoDB connection error:', err));
 
 const UserSchema = new mongoose.Schema({
     name: String,

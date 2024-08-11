@@ -78,9 +78,9 @@ app.post('/signup', async (req, res) => {
     try {
         const newUser = new UserModel({
             name: `${firstName} ${lastName}`,
-            email,
+            email: email,
             password: hashedPassword,
-            schoolID,
+            schoolID: schoolID,
         });
 
         var nodemailer = require('nodemailer');

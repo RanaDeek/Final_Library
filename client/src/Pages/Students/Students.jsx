@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { CgProfile } from "react-icons/cg";
 import { NavLink } from 'react-router-dom';
-import "./Student.css";
+import "./Students.css";
 import { IoIosWarning } from "react-icons/io";
 
 function Students() {

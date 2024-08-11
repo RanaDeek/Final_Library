@@ -44,7 +44,7 @@ function Lending() {
 
     const getBorrowers = async () => {
         try {
-            const response = await fetch('http://localhost:5000/borrowers');
+            const response = await fetch('https://final-library-server.onrender.com/borrowers');
             const data = await response.json();
             setBorrowers(data.borrowers || []);
         } catch (error) {
@@ -54,7 +54,7 @@ function Lending() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:5000/newborrower', newRow)
+        axios.post('https://final-library-server.onrender.com/newborrower', newRow)
             .then(response => {
                 setBorrowers([...borrowers, response.data]);
                 setNewRow({
@@ -108,7 +108,7 @@ function Lending() {
     };
 
     const handleUpdate = () => {
-        axios.post('http://localhost:5000/EditBookDate', updatedRow)
+        axios.post('https://final-library-server.onrender.com/EditBookDate', updatedRow)
             .then(response => {
                 const updatedBorrowers = borrowers.map((borrower, index) =>
                     index === editingIndex ? response.data : borrower

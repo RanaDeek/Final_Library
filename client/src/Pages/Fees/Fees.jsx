@@ -20,7 +20,7 @@ function Fees() {
     };
 
     const getStudents = async () => {
-        const response = await fetch('http://localhost:5000/getStudent');
+        const response = await fetch('https://final-library-server.onrender.com/getStudent');
         const data = await response.json();
         setStudents(data.students);
         console.log(data);
@@ -31,7 +31,7 @@ function Fees() {
         console.log(updateFees);
 
         try {
-            const response = await axios.post('http://localhost:5000/updateFees', updateFees);
+            const response = await axios.post('https://final-library-server.onrender.com/updateFees', updateFees);
             setupdate({
                 Fees: 0,
                 Student: '',

@@ -23,7 +23,7 @@ function SignUp() {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:5000/signup', formData)
+        axios.post('https://final-library-server.onrender.com/signup', formData)
             .then(response => {
                 setFormData({
                     firstName: '',

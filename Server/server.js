@@ -23,13 +23,13 @@ mongoose.connect(dbURI, {
 
 const UserSchema = new mongoose.Schema({
     name: String,
-    Email: { type: String, unique: true },
+    email: { type: String, unique: true },
     password: String,
     schoolID: String,
 });
 const StudentSchema = new mongoose.Schema({
     name: String,
-    Email: { type: String, unique: true },
+    email: { type: String, unique: true },
     phone: String,
     current_class: String,
     schoolID: String,
@@ -124,7 +124,7 @@ app.post('/signup', async (req, res) => {
 app.post('/signin', async (req, res) => {
     const { email, password } = req.body;
     try {
-        const student = await UserModel.findOne({ Email: email });
+        const student = await UserModel.findOne({ email: email });
         if (student) {
             const isMatch = bcrypt.compareSync(password, student.password);
             if (isMatch) {
@@ -149,7 +149,7 @@ app.post('/AddStudent', async (req, res) => {
     try {
         const Student = new StudentModel({
             name: `${firstName} ${lastName}`,
-            Email: email,
+            email: email,
             phone: phone,
             current_class: current_class,
             schoolID: schoolID,

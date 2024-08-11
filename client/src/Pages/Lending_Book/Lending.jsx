@@ -200,8 +200,8 @@ function Lending() {
                                     <tr>
                                         <td><input type="text" name='Student' value={newRow.Student} onChange={handleNewRowChange} placeholder='Student Name' /></td>
                                         <td><input type="text" name='BookName' value={newRow.BookName} onChange={handleNewRowChange} placeholder='Book Name' /></td>
-                                        <td><input type="text" name='DateBorrowed' value={newRow.DateBorrowed} onChange={handleNewRowChange} placeholder='Date Borrowed' /></td>
-                                        <td><input type="text" name='DateReturned' value={newRow.DateReturned} onChange={handleNewRowChange} placeholder='Date Returned' /></td>
+                                        <td><input type="Date" name='DateBorrowed' value={newRow.DateBorrowed} onChange={handleNewRowChange} placeholder='Date Borrowed' /></td>
+                                        <td><input type="Date" name='DateReturned' value={newRow.DateReturned} onChange={handleNewRowChange} placeholder='Date Returned' /></td>
                                         <td><input type="text" name='Comments' value={newRow.Comments} onChange={handleNewRowChange} placeholder='Comments' /></td>
                                     </tr>
                                 )}

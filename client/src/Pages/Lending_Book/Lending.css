@@ -7,11 +7,14 @@
 
 .table-Lending {
     padding-top: 420px;
-    margin-left: 320px;
+    margin-left: 200px;
+}
+.table-Lending h1{
+    margin-left: 350px !important;
 }
 
 .table-Lending table {
-    width: 100%;
+    width: 90% !important;
     border-collapse: collapse;
     margin: 20px 0;
     font-size: 18px;
@@ -68,10 +71,7 @@
     border: 1px white #4A190D;
 }
 
-.table-Lending table {
-    margin-top: 20px;
-    width: 800px !important;
-}
+
 
 td input {
     width: 100%;
@@ -89,12 +89,11 @@ th {
     display: flex;
     flex-direction: row;
     gap: 10px;
-    margin-left: 570px;
+    margin-left: 920px;
     margin-bottom: -12px;
     margin-top: 15px;
 }
 
 .margin {
-    margin-right: 180px !important;
-    margin-left: 425px !important;
+    margin-left: 785px !important;
 }

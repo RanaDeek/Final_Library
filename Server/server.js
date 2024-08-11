@@ -6,6 +6,7 @@ const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
+const JWT_SECRET = "your_secret_key_here";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -130,6 +131,8 @@ app.post('/signin', async (req, res) => {
             if (isMatch) {
                 const token = jwt.sign(
                     { id: student._id, name: student.name, Email: student.Email, schoolID: student.schoolID },
+                    JWT_SECRET,
+
                     { expiresIn: '1h' }
                 );
                 res.json({ message: "Sign in successful", token });

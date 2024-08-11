@@ -32,7 +32,7 @@ function Book() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(bookData);
-        axios.post('https://final-library-server.onrender.com/AddBook', bookData)
+        axios.post('http://localhost:5000/AddBook', bookData)
             .then(response => {
                 setBookData({
                     title: '',
@@ -58,7 +58,7 @@ function Book() {
             })
             .catch(error => {
                 console.error('Error adding:', error);
-                toast.error('Error Adding Book . Please try again.', {
+                toast.error(`${error.response.data.message}. Please try again.`, {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -75,7 +75,7 @@ function Book() {
         <>
             <div className='AddStudent-container '>
                 <h2 className='studentH2'>Add Book</h2>
-                <p className='studentH2'>Add New Book to Enhance Our Collection</p>
+                <p className='studentH2'>Add New Books to Enhance Our Collection</p>
                 <form className='shadow AddStudent' onSubmit={handleSubmit}>
                     <div className="row mb-3 student-row">
                         <label htmlFor="inputEmail1" className="col-sm-2 col-form-label">Book Title</label>
@@ -114,7 +114,7 @@ function Book() {
                             <input type="text" className="form-control" id="inputEmail6" name='Status' value={bookData.Status} onChange={handlechange} />
                         </div>
                     </div>
-
+         
                     <div className="row mb-3">
                         <label htmlFor="inputPassword7" className="col-sm-2 col-form-label">Category</label>
                         <select className="form-select select-book" aria-label="Default select example" id="inputPassword7" name='category' value={bookData.category} onChange={handlechange}>

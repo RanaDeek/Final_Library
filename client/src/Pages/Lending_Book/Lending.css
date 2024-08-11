@@ -1,0 +1,100 @@
+.Lending-Container {
+    background-color: #5d2112;
+    height: 150vh;
+    width: 1490px;
+    margin-top: -400px;
+}
+
+.table-Lending {
+    padding-top: 420px;
+    margin-left: 320px;
+}
+
+.table-Lending table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table-Lending th,
+.table-Lending td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+.table-Lending thead tr {
+    background-color: #f2f2f2;
+    color: #333;
+    text-align: left;
+}
+
+.table-Lending tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.warning-icon {
+    color: red;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.warning-icon svg {
+    margin-right: 5px;
+}
+
+.table-Lending h1 {
+    margin-left: 230px;
+    color: white;
+}
+
+.table-Lending button {
+    border: 1px solid white;
+    background-color: #4A190D;
+    height: 40px;
+    border-radius: 8px;
+    color: white;
+}
+
+.table-Lending button:hover {
+    background-color: white;
+    color: #4A190D;
+    border: 1px white #4A190D;
+}
+
+.table-Lending table {
+    margin-top: 20px;
+    width: 800px !important;
+}
+
+td input {
+    width: 100%;
+    border: none;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+    height: 100%;
+}
+
+th {
+    color: #4A190D !important;
+}
+
+.Submit-Button {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-left: 570px;
+    margin-bottom: -12px;
+    margin-top: 15px;
+}
+
+.margin {
+    margin-right: 180px !important;
+    margin-left: 425px !important;
+}

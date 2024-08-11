@@ -14,13 +14,13 @@ function Category() {
     }
   }
   const getCategory = async () => {
-    const response = await fetch('https://final-library-server.onrender.com/getBooks')
+    const response = await fetch('http://localhost:5000/getBooks')
     const data = await response.json()
     setbooks(data.books)
   }
   useEffect(() => {
     getCategory()
-  },[])
+  }, [])
   return (
     <>
       <div>
@@ -30,7 +30,11 @@ function Category() {
         <div className='table-container'>
           <h1>Categories</h1>
           <p>Explore your favorite books 📚</p>
-          <NavLink to='/Book'>Add Book</NavLink>
+          <div className='Nav-Link'>
+            <NavLink to='/Book'>Add Book</NavLink>
+            <NavLink to='/Lending'>Lending Book</NavLink>
+          </div>
+
           <div className='table-width'>
             <table className="table table-striped">
               <thead>

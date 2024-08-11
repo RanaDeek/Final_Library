@@ -3,10 +3,9 @@
     opacity: 0;
     animation: fadeIn 1s forwards;
     display: grid;
-    grid-template-columns: repeat(3, 0.5fr);
+    grid-template-columns: repeat(3, 0.515fr);
     padding: 20px;
-    margin-left: 75px;
-    margin-right: 75px;
+
 }
 
 @keyframes fadeIn {
@@ -51,7 +50,7 @@
 
 .about-image {
     width: 90%; 
-    height: 470px; 
+    height: 490px; 
     object-fit: cover;
 }
 

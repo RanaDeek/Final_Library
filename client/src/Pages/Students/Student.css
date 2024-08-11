@@ -1,0 +1,35 @@
+
+.nav-button{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    margin-left: 1010px;
+}
+
+.table-width table {
+    width: 180%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table-width th,
+.table-width td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+.table-width thead tr {
+    background-color: #f2f2f2;
+    color: #333;
+    text-align: left;
+}
+
+.table-width tbody tr:hover {
+    background-color: #f1f1f1;
+}

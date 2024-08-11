@@ -15,6 +15,8 @@ function Navbar() {
     const isCategory = location.pathname === '/Category';
     const isProfile = location.pathname === '/Profile';
     const isStudent = location.pathname === '/Students';
+    const isLending = location.pathname === '/Lending';
+    const isFees = location.pathname === '/Fees';
     const [studentName, setName] = useState("");
     const [userToken, setUserToken] = useState(localStorage.getItem('Student'));
     const getData = () => {
@@ -36,10 +38,10 @@ function Navbar() {
     };
 
     return (
-        <nav className={`navbar navbar-expand-lg ${!(isHome || isSignIN || isSignUp || isCategory || isProfile || isStudent) ? 'shadow black-text' : ''}`}>
+        <nav className={`navbar navbar-expand-lg ${!(isHome || isSignIN || isSignUp || isCategory || isProfile || isStudent || isLending || isFees) ? 'shadow black-text' : ''}`}>
             <div className="container-fluid">
                 <NavLink className="navbar-brand" to="/">
-                    <img src={!(isHome || isSignIN || isSignUp || isCategory || isProfile ||isStudent) ? PIC2 : PIC} alt="Logo" className="d-inline-block align-text-top" />
+                    <img src={!(isHome || isSignIN || isSignUp || isCategory || isProfile || isStudent || isLending || isFees) ? PIC2 : PIC} alt="Logo" className="d-inline-block align-text-top" />
                     <span className='Title'>Birzeit Library</span>
                 </NavLink>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -73,7 +75,7 @@ function Navbar() {
                                             style={{
                                                 width: '25%',
                                                 height: '25%',
-                                                color: !(isHome || isSignIN || isSignUp || isCategory || isProfile ||isStudent ) ? '#4A190D' : 'white',
+                                                color: !(isHome || isSignIN || isSignUp || isCategory || isProfile || isStudent || isLending || isFees) ? '#4A190D' : 'white',
                                                 marginBottom: '5px',
                                             }} />
                                         <span>{studentName}</span>

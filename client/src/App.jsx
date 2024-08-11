@@ -14,23 +14,27 @@ import Student from './Pages/Student/Student';
 import Book from './Pages/Book/Book';
 import Category from './Pages/Category/Category';
 import Students from './Pages/Students/Students';
+import Lending from './Pages/Lending_Book/Lending';
+import Fees from './Pages/Fees/Fees';
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  const router = createBrowserRouter ([{
+  const router = createBrowserRouter([{
     path: '/',
     element: <Root />,
     children: [
       { path: '/', element: <Home /> },
-      { path: '/signin', element: <SignIn/> },
-      { path: '/signup', element: <SignUp/>},
-      { path: '/Profile', element: <Profile/>},
-      { path: '/About', element: <About/>},
-      { path: '/Student', element: <Student/>},
-      { path: '/Book', element: <Book />},
-      { path: '/Category', element: <Category />},
-      { path: '/Students', element: <Students />}
+      { path: '/signin', element: <SignIn /> },
+      { path: '/signup', element: <SignUp /> },
+      { path: '/Profile', element: <Profile /> },
+      { path: '/About', element: <About /> },
+      { path: '/Student', element: <Student /> },
+      { path: '/Book', element: <Book /> },
+      { path: '/Category', element: <Category /> },
+      { path: '/Students', element: <Students /> },
+      { path: '/Lending', element: <Lending /> },
+      { path: '/Fees', element: <Fees /> },
+      { path: '*', element: <h1>Page not found</h1> }
     ]
   }]);
 

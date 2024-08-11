@@ -1,0 +1,72 @@
+select {
+    width: 180px;
+    height: 40px;
+    background-color: transparent; 
+    color: inherit; 
+    border: 1px solid white;
+    border-radius: 8px;
+ 
+}
+
+select option {
+    background-color: transparent; 
+    color: #4A190D; 
+}
+
+
+.Fees-Container{
+    z-index: 1000;
+    position: absolute;
+    background-color: transparent;
+    top: 20%;
+    right: 33%;
+    height: 450px;
+    width: 500px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid white;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.Fees-Container h2{
+    text-align: center;
+}
+.Fees-Container input {
+    width: 100%;
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 8px;
+    color: white;
+    padding: 15px;
+    
+}
+.Fees-Container input:disabled {
+    background-color: #333; 
+    color: #888; 
+    border-color: #555; 
+    cursor: not-allowed; 
+}
+
+.Fees-Container button{
+    margin-top: 30px !important;
+}
+
+.Fees-Container button {
+    margin-top: 20px; 
+    width: 100%;
+    height: 40px;
+    background-color: #4A190D;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.Fees-Container button:hover{
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+}

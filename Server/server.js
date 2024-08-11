@@ -1,4 +1,4 @@
-require('dotenv').config(); 
+require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -9,18 +9,17 @@ const { body, validationResult } = require('express-validator');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const JWT_SECRET = 'your_secret_key';
 app.use(express.json());
 app.use(cors());
 
 const dbURI = process.env.MONGO_DB;
 
 mongoose.connect(dbURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
 })
-.then(() => console.log('MongoDB connected...'))
-.catch(err => console.log('MongoDB connection error:', err));
+    .then(() => console.log('MongoDB connected...'))
+    .catch(err => console.log('MongoDB connection error:', err));
 
 const UserSchema = new mongoose.Schema({
     name: String,
@@ -34,26 +33,37 @@ const StudentSchema = new mongoose.Schema({
     phone: String,
     current_class: String,
     schoolID: String,
+    Fees: { type: Number, min: 50 },
+    Date: { type: Date }
 });
 
 const BookSchema = new mongoose.Schema({
     title: String,
     id: { type: String, unique: true },
     author: String,
-    quantity: { type: Number, min: 3 },
+    quantity: { type: Number, min: 0 },
     edition: { type: Number, min: 2000 },
     Category: String,
     Status: String,
 });
+const borrowerSchema = new mongoose.Schema({
+    Student: String,
+    BookName: String,
+    DateBorrowed: String,
+    DateReturned: String,
+    Comments: String,
+});
+
 
 const UserModel = mongoose.model("librarians", UserSchema);
 const StudentModel = mongoose.model("students", StudentSchema);
 const BookModel = mongoose.model("Books", BookSchema);
+const Borrower = mongoose.model('borrowers', borrowerSchema);
 
 app.get("/getStudent", (req, res) => {
     StudentModel.find({})
         .then(users => {
-            res.json({ "students" : users });
+            res.json({ "students": users });
         })
         .catch(err => {
             console.error(err);
@@ -68,7 +78,7 @@ app.post('/signup', async (req, res) => {
     try {
         const newUser = new UserModel({
             name: `${firstName} ${lastName}`,
-            Email: email,
+            email,
             password: hashedPassword,
             schoolID,
         });
@@ -104,10 +114,13 @@ app.post('/signup', async (req, res) => {
         const user = await newUser.save();
         res.json(user);
     } catch (err) {
-        res.status(500).send(err);
+        if (err.code === 11000) {
+            res.status(400).json({ message: "Librarian is already registered" });
+        } else {
+            res.status(500).json({ message: "An error occurred during registration" });
+        }
     }
 });
-
 app.post('/signin', async (req, res) => {
     const { email, password } = req.body;
     try {
@@ -117,10 +130,8 @@ app.post('/signin', async (req, res) => {
             if (isMatch) {
                 const token = jwt.sign(
                     { id: student._id, name: student.name, Email: student.Email, schoolID: student.schoolID },
-                    JWT_SECRET,
                     { expiresIn: '1h' }
                 );
-                console.log(token);
                 res.json({ message: "Sign in successful", token });
             } else {
                 res.status(401).json({ message: "Incorrect password" });
@@ -133,11 +144,8 @@ app.post('/signin', async (req, res) => {
         res.status(500).send(err);
     }
 });
-
-
 app.post('/AddStudent', async (req, res) => {
-    const { firstName, lastName, email, phone, current_class, schoolID } = req.body;
-
+    const { firstName, lastName, email, phone, current_class, schoolID, Fees, Date } = req.body;
     try {
         const Student = new StudentModel({
             name: `${firstName} ${lastName}`,
@@ -145,12 +153,17 @@ app.post('/AddStudent', async (req, res) => {
             phone: phone,
             current_class: current_class,
             schoolID: schoolID,
+            Fees: Fees,
+            Date: Date,
         })
         const student = await Student.save();
         res.json(student);
     } catch (err) {
-        console.error("Error adding book:", err);
-        res.status(500).send(err);
+        if (err.code === 11000) {
+            res.status(400).json({ message: "Student is already added" });
+        } else {
+            res.status(500).json({ message: "An error occurred during adding" });
+        }
     }
 });
 app.post('/AddBook', async (req, res) => {
@@ -163,13 +176,16 @@ app.post('/AddBook', async (req, res) => {
             quantity: quantity,
             edition: edition,
             Category: category,
-            Status: Status
+            Status: Status,
         });
         const book = await Book.save();
         res.json(book);
     } catch (err) {
-        console.error("Error adding book:", err);
-        res.status(500).send(err);
+        if (err.code === 11000) {
+            res.status(400).json({ message: "Book is already added" });
+        } else {
+            res.status(500).json({ message: "An error occurred during adding" });
+        }
     }
 });
 app.get("/getBooks", (req, res) => {
@@ -182,4 +198,116 @@ app.get("/getBooks", (req, res) => {
         });
 
 });
+
+app.post("/newborrower", async (req, res) => {
+    console.log(req.body);
+
+    const { Student, BookName, DateBorrowed, DateReturned, Comments } = req.body;
+    try {
+        const student = await StudentModel.findOne({ name: Student });
+        if (!student) {
+            console.log(`Student not found`)
+            return res.status(404).json({ message: "Student not found" });
+        }
+
+        const book = await BookModel.findOne({ title: BookName, quantity: { $gt: 0 } });
+        if (!book) {
+            console.log(`book not found`)
+            return res.status(404).json({ message: "Book not found or not available" });
+        } else {
+            console.log(`book available`)
+            if (book.Status === 'Borrowed') {
+                return res.status(400).json({ message: "Book is already borrowed" });
+            }
+        }
+        const newBorrower = new Borrower({
+            Student,
+            BookName,
+            DateBorrowed,
+            DateReturned,
+            Comments,
+        });
+
+        const savedBorrower = await newBorrower.save();
+
+        book.quantity -= 1;
+
+        if (book.quantity > 0) {
+            book.Status = 'Available';
+        } else {
+            book.Status = 'Borrowed';
+        }
+
+        await book.save();
+
+        res.status(201).json(savedBorrower);
+
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
+
+app.post('/EditBookDate', async (req, res) => {
+    const { Student, BookName, DateReturned } = req.body;
+    try {
+        const book = await Borrower.findOneAndUpdate(
+            { Student: Student, BookName: BookName },
+            { $set: { DateReturned: DateReturned } },
+            { new: true }
+        );
+        res.json(book);
+
+        const book2 = await BookModel.findOne({ title: BookName });
+
+        if (!book) {
+            return res.status(404).json({ message: "Book not found" });
+        }
+        if (!book2) {
+            return res.status(404).json({ message: "Borrower not found" });
+        } else {
+            book2.Status = 'Available';
+            book2.quantity += 1;
+            await book2.save();
+            return res.status(200).json(book);
+        }
+
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
+
+app.get("/borrowers", async (req, res) => {
+    try {
+        Borrower.find({})
+            .then(borrower => {
+                res.json({ borrowers: borrower });
+            }).catch(err => {
+                console.error(err);
+                res.status(500).send(err);
+            });
+
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+app.post("/updateFees", async (req, res) => {
+    const { Student, Fees, Date } = req.body;
+    try {
+        const student = await StudentModel.findOneAndUpdate(
+            { name: Student },
+            { $set: { Fees: Fees, Date: Date } },
+            { new: true }
+        );
+
+        if (!student) {
+            return res.status(404).json({ message: "Student not found" });
+        }
+
+        res.json(student);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
+
 app.listen(PORT, () => console.log(`Server running on port 5000`));

@@ -23,7 +23,7 @@ function SignUp() {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('https://final-library-server.onrender.com/signup', formData)
+        axios.post('http://localhost:5000/signup', formData)
             .then(response => {
                 setFormData({
                     firstName: '',
@@ -49,7 +49,7 @@ function SignUp() {
             })
             .catch(error => {
                 console.error('Error signing up:', error);
-                toast.error('Error signing up. Please try again.', {
+                toast.error(`${error.response.data.message}. Please try again.`, {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
